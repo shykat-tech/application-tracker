@@ -1,10 +1,11 @@
 export type ApplicationStatus =
   | "draft"
   | "applied"
-  | "admit-card"
+  | "shortlisted"
   | "exam"
-  | "result"
+  | "result-published"
   | "completed"
+  | "rejected"
   | "expired";
 
 export interface ApplicationDocument {
@@ -13,6 +14,14 @@ export interface ApplicationDocument {
   url: string;
   uploadedAt: string;
 }
+
+export type PaymentStatus = "pending" | "paid" | "not-required";
+
+export type ApplicationType =
+  | "job"
+  | "admission"
+  | "scholarship"
+  | "government";
 
 export interface Application {
   id: string;
@@ -23,7 +32,11 @@ export interface Application {
 
   url?: string;
 
-  paymentStatus: boolean;
+  paymentStatus: PaymentStatus;
+
+  payAmount?: number;
+
+  applicationType?: ApplicationType;
 
   appliedDate?: string;
 
@@ -41,6 +54,8 @@ export interface Application {
   };
 
   documents: ApplicationDocument[];
+
+  daysLeft?: number;
 
   synced: boolean;
 
