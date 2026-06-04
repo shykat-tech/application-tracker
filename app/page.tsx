@@ -58,7 +58,7 @@ export default function Home() {
     return <div>Loading...</div>;
   }
   return (
-    <main className="p-10">
+    <main className="px-4 sm:px-0 container mx-auto py-10">
       <div className="mb-6 rounded border bg-muted p-4 text-sm">
         <p className="text-muted-foreground">
           {`"The future belongs to those who believe in the beauty of their

@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className="border-b">
-      <div className="container mx-auto flex items-center justify-between py-4 ">
+      <div className="container mx-auto px-4 sm:px-0 flex items-center justify-between py-4 ">
         <h3>Application Tracker</h3>
 
         {user ? (
@@ -24,7 +24,6 @@ const Navbar = () => {
                     <AvatarImage
                       src={user.photoURL}
                       alt={user.displayName || "User Avatar"}
-                      className="grayscale"
                     />
                     <AvatarFallback>
                       {user.displayName?.[0] || "U"}
