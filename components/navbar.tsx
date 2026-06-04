@@ -6,6 +6,11 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -18,28 +23,30 @@ const Navbar = () => {
         {user ? (
           <div className="flex items-center gap-4">
             {user.photoURL && (
-              <HoverCard openDelay={10} closeDelay={100}>
-                <HoverCardTrigger asChild>
-                  <Avatar>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="cursor-pointer">
                     <AvatarImage
-                      src={user.photoURL}
+                      src={user.photoURL ?? ""}
                       alt={user.displayName || "User Avatar"}
                     />
                     <AvatarFallback>
                       {user.displayName?.[0] || "U"}
                     </AvatarFallback>
                   </Avatar>
-                </HoverCardTrigger>
-                <HoverCardContent className="flex w-64 mr-6 flex-col gap-2.5">
-                  <div className="mt-1 text-xs text-muted-foreground">
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent align="end" className="w-64">
+                  <div className="mb-2 text-xs text-muted-foreground">
                     You are logged in with{" "}
-                    <span className="font-medium text-shadow">
-                      {user.email}
-                    </span>
+                    <span className="block font-medium">{user.email}</span>
                   </div>
-                  <Button onClick={logout}>Logout</Button>
-                </HoverCardContent>
-              </HoverCard>
+
+                  <Button className="w-full" onClick={logout}>
+                    Logout
+                  </Button>
+                </DropdownMenuContent>
+              </DropdownMenu>
             )}
           </div>
         ) : (
